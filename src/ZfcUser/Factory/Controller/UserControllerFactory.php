@@ -18,31 +18,37 @@
 
 namespace ZfcUser\Factory\Controller;
 
-use Zend\Mvc\Controller\ControllerManager;
 use Zend\ServiceManager\FactoryInterface;
 use Zend\ServiceManager\ServiceLocatorInterface;
 use ZfcUser\Controller\UserController;
 
+/**
+ * Class UserControllerFactory
+ * @package ZfcUser\Factory\Controller
+ */
 class UserControllerFactory implements FactoryInterface
 {
     /**
      * Create controller
      *
-     * @param ControllerManager $serviceLocator
+     * @param ServiceLocatorInterface $serviceLocator
      * @return UserController
      */
-    public function createService(ServiceLocatorInterface $controllerManager)
+    public function createService(ServiceLocatorInterface $serviceLocator)
     {
-        /* @var ServiceLocatorInterface $serviceLocator */
-        $serviceLocator = $controllerManager->getServiceLocator();
+        /**
+         * @var \Zend\Form\FormElementManager           $formElementManager
+         * @var \Zend\Mvc\Controller\ControllerManager  $serviceLocator
+         * @var \Zend\ServiceManager\ServiceManager     $serviceManager
+         */
+        $serviceManager     = $serviceLocator->getServiceLocator();
+        $formElementManager = $serviceManager->get('FormElementManager');
 
-        $userService = $serviceLocator->get('zfcuser_user_service');
-        $registerForm = $serviceLocator->get('zfcuser_register_form');
-        $loginForm = $serviceLocator->get('zfcuser_login_form');
-        $options = $serviceLocator->get('zfcuser_module_options');
-
-        $controller = new UserController($userService, $options, $registerForm, $loginForm);
-
-        return $controller;
+        return new UserController(
+            $serviceManager->get('zfcuser_user_service'),
+            $serviceManager->get('zfcuser_module_options'),
+            $formElementManager->get('ZfcUser\Form\RegistrationForm'),
+            $formElementManager->get('ZfcUser\Form\LoginForm')
+        );
     }
 }

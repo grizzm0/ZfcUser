@@ -37,21 +37,24 @@ return array(
             'zfcuser' => 'ZfcUser\Factory\Controller\UserControllerFactory',
         ),
     ),
+
+    'form_elements' => [
+        'invokables' => [
+            'ZfcUser\Form\LoginForm'        => 'ZfcUser\Form\LoginForm',
+            'ZfcUser\Form\RegistrationForm' => 'ZfcUser\Form\RegistrationForm',
+        ],
+    ],
+
     'service_manager' => array(
         'invokables' => array(
             'ZfcUser\Authentication\Adapter\Db' => 'ZfcUser\Authentication\Adapter\Db',
             'ZfcUser\Authentication\Storage\Db' => 'ZfcUser\Authentication\Storage\Db',
-            'ZfcUser\Form\Login'                => 'ZfcUser\Form\Login',
             'zfcuser_user_service'              => 'ZfcUser\Service\User',
         ),
         'factories' => array(
             'zfcuser_module_options'                        => 'ZfcUser\Factory\ModuleOptionsFactory',
             'zfcuser_auth_service'                          => 'ZfcUser\Factory\AuthenticationServiceFactory',
             'ZfcUser\Authentication\Adapter\AdapterChain'   => 'ZfcUser\Authentication\Adapter\AdapterChainServiceFactory',
-            'zfcuser_login_form'                            => 'ZfcUser\Factory\Form\LoginFormFactory',
-            'zfcuser_register_form'                         => 'ZfcUser\Factory\Form\RegisterFormFactory',
-            'zfcuser_change_password_form'                  => 'ZfcUser\Factory\Form\ChangePasswordFormFactory',
-            'zfcuser_change_email_form'                     => 'ZfcUser\Factory\Form\ChangeEmailFormFactory',
             'zfcuser_user_mapper'                           => 'ZfcUser\Factory\UserMapperFactory',
             'zfcuser_user_hydrator'                         => 'ZfcUser\Factory\Mapper\UserHydratorFactory',
         ),
