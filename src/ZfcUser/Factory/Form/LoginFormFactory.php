@@ -3,8 +3,8 @@ namespace ZfcUser\Factory\Form;
 
 use Zend\ServiceManager\FactoryInterface;
 use Zend\ServiceManager\ServiceLocatorInterface;
-use ZfcUser\Form\Login;
-use ZfcUser\Form\LoginFilter;
+use ZfcUser\Form\LoginForm;
+use Zfcuser\InputFilter\LoginFilter;
 use ZfcUser\Options;
 
 class LoginFormFactory implements FactoryInterface
@@ -14,6 +14,8 @@ class LoginFormFactory implements FactoryInterface
      */
     public function createService(ServiceLocatorInterface $serviceManager)
     {
+        return new LoginForm();
+
         /* @var $options Options\ModuleOptions */
         $options = $serviceManager->get('zfcuser_module_options');
 

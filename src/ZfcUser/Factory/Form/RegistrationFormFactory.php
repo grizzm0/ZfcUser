@@ -3,18 +3,20 @@ namespace ZfcUser\Factory\Form;
 
 use Zend\ServiceManager\FactoryInterface;
 use Zend\ServiceManager\ServiceLocatorInterface;
-use ZfcUser\Form\Register;
-use ZfcUser\Form\RegisterFilter;
+use ZfcUser\Form\RegistrationForm;
+use ZfcUser\InputFilter\RegistrationFilter;
 use ZfcUser\Validator\NoRecordExists;
 use ZfcUser\Options;
 
-class RegisterFormFactory implements FactoryInterface
+class RegistrationFormFactory implements FactoryInterface
 {
     /**
      * {@inheritDoc}
      */
     public function createService(ServiceLocatorInterface $serviceManager)
     {
+        return new RegistrationForm();
+
         /* @var $options Options\ModuleOptions */
         $options = $serviceManager->get('zfcuser_module_options');
 

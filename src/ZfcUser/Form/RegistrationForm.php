@@ -1,10 +1,14 @@
 <?php
-
 namespace ZfcUser\Form;
 
+use Zend\Form\Form;
 use ZfcUser\Options\RegistrationOptionsInterface;
 
-class Register extends Base
+/**
+ * Class Register
+ * @package ZfcUser\Form
+ */
+class RegistrationForm extends Form
 {
     /**
      * @var RegistrationOptionsInterface
@@ -15,41 +19,57 @@ class Register extends Base
      * @param string|null $name
      * @param RegistrationOptionsInterface $options
      */
-    public function __construct($name, RegistrationOptionsInterface $options)
+    /*public function __construct($name, RegistrationOptionsInterface $options)
     {
-        $this->setRegistrationOptions($options);
+        $this->registrationOptions = $options;
         parent::__construct($name);
+    }*/
 
-        $this->remove('userId');
-        if (!$this->getRegistrationOptions()->getEnableUsername()) {
-            $this->remove('username');
-        }
-        if (!$this->getRegistrationOptions()->getEnableDisplayName()) {
-            $this->remove('display_name');
-        }
-        $this->get('submit')->setLabel('Register');
-        $this->getEventManager()->trigger('init', $this);
-    }
-
-    /**
-     * Set Registration Options
-     *
-     * @param RegistrationOptionsInterface $registrationOptions
-     * @return Register
-     */
-    public function setRegistrationOptions(RegistrationOptionsInterface $registrationOptions)
+    public function init()
     {
-        $this->registrationOptions = $registrationOptions;
-        return $this;
-    }
+        /*if ($this->registrationOptions->getEnableUsername()) {
+            $this->add([
+                'name' => 'username',
+                'type' => 'Text',
+                'options' => [
+                    'label' => 'Username',
+                ],
+            ]);
+        }*/
 
-    /**
-     * Get Registration Options
-     *
-     * @return RegistrationOptionsInterface
-     */
-    public function getRegistrationOptions()
-    {
-        return $this->registrationOptions;
+        $this->add([
+            'name' => 'email',
+            'type' => 'Email',
+            'options' => [
+                'label' => 'Email',
+            ],
+        ]);
+
+        $this->add([
+            'name' => 'password',
+            'type' => 'Password',
+            'options' => [
+                'label' => 'Password',
+            ],
+        ]);
+
+        $this->add([
+            'name' => 'passwordVerify',
+            'type' => 'Password',
+            'options' => [
+                'label' => 'Password Verify',
+            ],
+        ]);
+
+        $this->add([
+            'name' => 'submit',
+            'type' => 'Button',
+            'attributes' => [
+                'type' => 'submit',
+            ],
+            'options' => [
+                'label' => 'Register',
+            ],
+        ]);
     }
 }

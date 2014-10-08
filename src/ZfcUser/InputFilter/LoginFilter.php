@@ -1,11 +1,10 @@
 <?php
+namespace ZfcUser\InputFilter;
 
-namespace ZfcUser\Form;
-
-use ZfcBase\InputFilter\ProvidesEventsInputFilter;
+use Zend\InputFilter\InputFilter;
 use ZfcUser\Options\AuthenticationOptionsInterface;
 
-class LoginFilter extends ProvidesEventsInputFilter
+class LoginFilter extends InputFilter
 {
     public function __construct(AuthenticationOptionsInterface $options)
     {

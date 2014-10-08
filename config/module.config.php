@@ -39,9 +39,9 @@ return array(
     ),
 
     'form_elements' => [
-        'invokables' => [
-            'ZfcUser\Form\LoginForm'        => 'ZfcUser\Form\LoginForm',
-            'ZfcUser\Form\RegistrationForm' => 'ZfcUser\Form\RegistrationForm',
+        'factories' => [
+            'ZfcUser\Form\LoginForm'        => 'ZfcUser\Factory\Form\LoginFormFactory',
+            'ZfcUser\Form\RegistrationForm' => 'ZfcUser\Factory\Form\RegistrationFormFactory',
         ],
     ],
 

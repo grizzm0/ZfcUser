@@ -1,12 +1,11 @@
 <?php
+namespace ZfcUser\InputFilter;
 
-namespace ZfcUser\Form;
-
-use ZfcBase\InputFilter\ProvidesEventsInputFilter;
-use ZfcUser\Options\RegistrationOptionsInterface;
+use Zend\InputFilter\InputFilter;
 use Zend\Validator\ValidatorInterface;
+use ZfcUser\Options\RegistrationOptionsInterface;
 
-class RegisterFilter extends ProvidesEventsInputFilter
+class RegistrationFilter extends InputFilter
 {
     /**
      * @var ValidatorInterface
