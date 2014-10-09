@@ -22,13 +22,13 @@ class RegistrationForm extends Form
      */
     public function __construct($name = null, $options = [], RegistrationOptionsInterface $registrationOptions)
     {
-        $this->registrationOptions = $options;
+        $this->registrationOptions = $registrationOptions;
         parent::__construct($name, $options);
     }
 
     public function init()
     {
-        /*if ($this->registrationOptions->getEnableUsername()) {
+        if ($this->registrationOptions->getEnableUsername()) {
             $this->add([
                 'name' => 'username',
                 'type' => 'Text',
@@ -36,7 +36,7 @@ class RegistrationForm extends Form
                     'label' => 'Username',
                 ],
             ]);
-        }*/
+        }
 
         $this->add([
             'name' => 'email',
@@ -45,6 +45,16 @@ class RegistrationForm extends Form
                 'label' => 'Email',
             ],
         ]);
+
+        if ($this->registrationOptions->getEnableDisplayName()){
+            $this->add([
+                'name' => 'displayName',
+                'type' => 'Text',
+                'options' => [
+                    'label' => 'Display Name',
+                ],
+            ]);
+        }
 
         $this->add([
             'name' => 'password',

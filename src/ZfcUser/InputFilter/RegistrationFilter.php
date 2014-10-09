@@ -77,24 +77,27 @@ class RegistrationFilter extends InputFilter
             ],
         ]);
 
-        /*
-        if ($this->getOptions()->getEnableDisplayName()) {
-            $this->add(array(
-                'name'       => 'display_name',
+        if ($this->registrationOptions->getEnableDisplayName()) {
+            $this->add([
+                'name'       => 'displayName',
                 'required'   => true,
-                'filters'    => array(array('name' => 'StringTrim')),
-                'validators' => array(
-                    array(
-                        'name'    => 'StringLength',
-                        'options' => array(
+                'filters' => [
+                    [
+                        'name' => 'StringTrim',
+                    ],
+                ],
+                'validators' => [
+                    [
+                        'name' => 'StringLength',
+                        // TODO: Make min/max configurable
+                        'options' => [
                             'min' => 3,
                             'max' => 128,
-                        ),
-                    ),
-                ),
-            ));
+                        ],
+                    ],
+                ],
+            ]);
         }
-        */
 
         $this->add([
             'name' => 'password',
