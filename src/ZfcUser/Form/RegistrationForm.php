@@ -16,14 +16,15 @@ class RegistrationForm extends Form
     protected $registrationOptions;
 
     /**
-     * @param string|null $name
-     * @param RegistrationOptionsInterface $options
+     * @param string|null                   $name
+     * @param array                         $options
+     * @param RegistrationOptionsInterface  $registrationOptions
      */
-    /*public function __construct($name, RegistrationOptionsInterface $options)
+    public function __construct($name = null, $options = [], RegistrationOptionsInterface $registrationOptions)
     {
         $this->registrationOptions = $options;
-        parent::__construct($name);
-    }*/
+        parent::__construct($name, $options);
+    }
 
     public function init()
     {

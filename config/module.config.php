@@ -43,6 +43,19 @@ return array(
             'ZfcUser\Form\LoginForm'        => 'ZfcUser\Factory\Form\LoginFormFactory',
             'ZfcUser\Form\RegistrationForm' => 'ZfcUser\Factory\Form\RegistrationFormFactory',
         ],
+        'shared' => [
+            'ZfcUser\Form\LoginForm'            => true,
+            'ZfcUser\Form\RegistrationForm'     => true,
+        ],
+    ],
+
+    'input_filters' => [
+        'factories' => [
+            'ZfcUser\InputFilter\RegistrationFilter' => 'ZfcUser\Factory\InputFilter\RegistrationFilterFactory',
+        ],
+        'invokables' => [
+            'ZfcUser\InputFilter\LoginFilter' => 'ZfcUser\InputFilter\LoginFilter',
+        ],
     ],
 
     'service_manager' => array(

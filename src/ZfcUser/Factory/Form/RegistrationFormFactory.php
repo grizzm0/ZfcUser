@@ -4,43 +4,31 @@ namespace ZfcUser\Factory\Form;
 use Zend\ServiceManager\FactoryInterface;
 use Zend\ServiceManager\ServiceLocatorInterface;
 use ZfcUser\Form\RegistrationForm;
-use ZfcUser\InputFilter\RegistrationFilter;
-use ZfcUser\Validator\NoRecordExists;
 use ZfcUser\Options;
 
+/**
+ * Class RegistrationFormFactory
+ * @package ZfcUser\Factory\Form
+ */
 class RegistrationFormFactory implements FactoryInterface
 {
     /**
-     * {@inheritDoc}
+     * @param ServiceLocatorInterface $serviceLocator
+     * @return RegistrationForm
      */
-    public function createService(ServiceLocatorInterface $serviceManager)
+    public function createService(ServiceLocatorInterface $serviceLocator)
     {
-        return new RegistrationForm();
+        /**
+         * @var \ZfcUser\Options\RegistrationOptionsInterface   $registrationOptions
+         * @var \Zend\Form\FormElementManager                   $serviceLocator
+         * @var \Zend\ServiceManager\ServiceManager             $serviceManager
+         */
+        $serviceManager         = $serviceLocator->getServiceLocator();
+        $registrationOptions    = $serviceManager->get('zfcuser_module_options');
+        //$className              = $registrationOptions->getUserEntityClass();
 
-        /* @var $options Options\ModuleOptions */
-        $options = $serviceManager->get('zfcuser_module_options');
-
-        $userMapper = $serviceManager->get('zfcuser_user_mapper');
-
-        $emailValidator = new NoRecordExists(array(
-            'mapper' => $userMapper,
-            'key' => 'email',
-        ));
-
-        $userNameValidator = new NoRecordExists(array(
-            'mapper' => $userMapper,
-            'key' => 'username',
-        ));
-
-        $inputFilter = new RegisterFilter(
-            $emailValidator,
-            $userNameValidator,
-            $options
-        );
-
-        $form = new Register(null, $options);
-        // $form->setCaptchaElement($sm->get('zfcuser_captcha_element'));
-        $form->setInputFilter($inputFilter);
+        $form = new RegistrationForm('registration', [], $registrationOptions);
+        $form->setInputFilter($serviceManager->get('InputFilterManager')->get('ZfcUser\InputFilter\RegistrationFilter'));
 
         return $form;
     }
