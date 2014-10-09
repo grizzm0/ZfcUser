@@ -1,32 +1,30 @@
-<h1><?php echo $this->translate('Sign In'); ?></h1>
-
 <?php
-$form = $this->loginForm;
+/**
+ * @var $form \Zend\Form\Form
+ * @var $this \Zend\View\Renderer\PhpRenderer
+ */
+$form = $this->get('loginForm');
 $form->prepare();
 $form->setAttribute('action', $this->url('zfcuser/login'));
 $form->setAttribute('method', 'post');
 ?>
 
-<?php echo $this->form()->openTag($form) ?>
+<h1><?= $this->translate('Sign In') ?></h1>
 
-    <dl class="zend_form">
-        <?php echo $this->formElementErrors($form->get('identity')) ?>
+<?= $this->form()->openTag($form) ?>
+    <?= $this->formElementErrors($form->get('identity')) ?>
 
-        <dt><?php echo $this->formLabel($form->get('identity')) ?></dt>
-        <dd><?php echo $this->formInput($form->get('identity')) ?></dd>
+    <?php if ($this->get('redirect')): ?>
+        <input type="hidden" name="redirect" value="<?= $this->escapeHtml($this->get('redirect')) ?>">
+    <?php endif ?>
 
-        <dt><?php echo $this->formLabel($form->get('credential')) ?></dt>
-        <dd><?php echo $this->formInput($form->get('credential')) ?></dd>
+    <?= $this->formCollection($form) ?>
 
-        <?php if ($this->redirect): ?>
-            <input type="hidden" name="redirect" value="<?php echo $this->escapeHtml($this->redirect) ?>" />
-        <?php endif ?>
+<?= $this->form()->closeTag() ?>
 
-        <dd><?php echo $this->formButton($form->get('submit')) ?></dd>
-    </dl>
-
-<?php echo $this->form()->closeTag() ?>
-
-<?php if ($this->enableRegistration) : ?>
-<?php echo $this->translate('Not registered?'); ?> <a href="<?php echo $this->url('zfcuser/register') . ($this->redirect ? '?redirect='.$this->redirect : '') ?>"><?php echo $this->translate('Sign up!'); ?></a>
+<?php if ($this->get('enableRegistration')) : ?>
+    <?= $this->translate('Not registered?') ?>
+    <a href="<?= $this->url('zfcuser/register') . ($this->get('redirect') ? '?redirect='. $this->get('redirect') : '') ?>">
+        <?= $this->translate('Sign up!'); ?>
+    </a>
 <?php endif; ?>
