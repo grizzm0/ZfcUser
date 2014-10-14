@@ -17,7 +17,7 @@ class LoginForm extends Form
     {
         $this->add([
             'name' => 'identity',
-            'type' => 'Email',
+            'type' => 'Text',
             'options' => [
                 'label' => 'Identity',
             ]
