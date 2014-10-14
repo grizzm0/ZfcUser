@@ -46,12 +46,12 @@ class RegistrationFilter extends InputFilter
                             'max' => 255,
                         ],
                     ],
-                    /*[
+                    [
                         'name' => 'ZfcUser\Validator\NoRecordExistsValidator',
                         'options' => [
                             'key' => 'username',
                         ],
-                    ],*/
+                    ],
                 ],
             ]);
         }
@@ -68,12 +68,12 @@ class RegistrationFilter extends InputFilter
                 [
                     'name' => 'EmailAddress',
                 ],
-                /*[
+                [
                     'name' => 'ZfcUser\Validator\NoRecordExistsValidator',
                     'options' => [
                         'key' => 'email',
                     ],
-                ],*/
+                ],
             ],
         ]);
 
