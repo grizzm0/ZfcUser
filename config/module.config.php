@@ -44,8 +44,8 @@ return array(
             'ZfcUser\Form\RegistrationForm' => 'ZfcUser\Factory\Form\RegistrationFormFactory',
         ],
         'shared' => [
-            'ZfcUser\Form\LoginForm'            => true,
-            'ZfcUser\Form\RegistrationForm'     => true,
+            'ZfcUser\Form\LoginForm'        => true,
+            'ZfcUser\Form\RegistrationForm' => true,
         ],
     ],
 
@@ -55,6 +55,13 @@ return array(
         ],
         'invokables' => [
             'ZfcUser\InputFilter\LoginFilter' => 'ZfcUser\InputFilter\LoginFilter',
+        ],
+    ],
+
+    'validators' => [
+        'factories' => [
+            'ZfcUser\Validator\NoRecordExistsValidator' => 'ZfcUser\Factory\Validator\NoRecordExistsValidatorFactory',
+            'ZfcUser\Validator\RecordExistsValidator'   => 'ZfcUser\Factory\Validator\RecordExistsValidatorFactory',
         ],
     ],
 
