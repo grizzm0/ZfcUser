@@ -49,6 +49,12 @@ return array(
         ],
     ],
 
+    'hydrators' => [
+        'factories' => [
+            'ZfcUser\Hydrator\RegistrationHydrator' => 'ZfcUser\Factory\Hydrator\RegistrationHydratorFactory',
+        ],
+    ],
+
     'input_filters' => [
         'factories' => [
             'ZfcUser\InputFilter\RegistrationFilter' => 'ZfcUser\Factory\InputFilter\RegistrationFilterFactory',

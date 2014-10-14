@@ -1,5 +1,4 @@
 <?php
-
 namespace ZfcUser\Options;
 
 interface RegistrationOptionsInterface
@@ -7,7 +6,7 @@ interface RegistrationOptionsInterface
     /**
      * set enable display name
      *
-     * @param bool $flag
+     * @param bool $enableDisplayName
      * @return ModuleOptions
      */
     public function setEnableDisplayName($enableDisplayName);
@@ -36,7 +35,7 @@ interface RegistrationOptionsInterface
     /**
      * set enable username
      *
-     * @param bool $flag
+     * @param bool $enableUsername
      * @return ModuleOptions
      */
     public function setEnableUsername($enableUsername);
@@ -76,4 +75,11 @@ interface RegistrationOptionsInterface
      * @return bool
      */
     public function getLoginAfterRegistration();
+
+    /**
+     * get user entity class
+     *
+     * @return string
+     */
+    public function getUserEntityClass();
 }

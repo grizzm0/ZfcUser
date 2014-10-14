@@ -79,8 +79,8 @@ class RegistrationFilter extends InputFilter
 
         if ($this->registrationOptions->getEnableDisplayName()) {
             $this->add([
-                'name'       => 'displayName',
-                'required'   => true,
+                'name' => 'displayName',
+                'required' => true,
                 'filters' => [
                     [
                         'name' => 'StringTrim',
